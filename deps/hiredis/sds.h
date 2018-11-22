@@ -36,7 +36,7 @@
 #include <sys/types.h>
 #include <stdarg.h>
 
-typedef char *sds;
+typedef char *sds;  // sds指向sdshdr的buf字段
 
 struct sdshdr {
     unsigned int len;
@@ -44,11 +44,17 @@ struct sdshdr {
     char buf[];
 };
 
+/*
+    获取当前字符串长度（不含\0）
+*/
 static inline size_t sdslen(const sds s) {
     struct sdshdr *sh = (void*)(s-(sizeof(struct sdshdr)));
     return sh->len;
 }
 
+/*
+获取SDS未使用空间
+*/
 static inline size_t sdsavail(const sds s) {
     struct sdshdr *sh = (void*)(s-(sizeof(struct sdshdr)));
     return sh->free;
