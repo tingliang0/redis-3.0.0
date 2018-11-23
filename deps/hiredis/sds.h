@@ -39,9 +39,9 @@
 typedef char *sds;  // sds指向sdshdr的buf字段
 
 struct sdshdr {
-    unsigned int len;
-    unsigned int free;
-    char buf[];
+    unsigned int len;   // 已使用空间
+    unsigned int free;  // 未使用空间
+    char buf[];         // 具体内容
 };
 
 /*
