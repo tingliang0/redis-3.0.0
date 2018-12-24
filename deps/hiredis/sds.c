@@ -652,6 +652,9 @@ sds sdstrim(sds s, const char *cset) {
  * s = sdsnew("Hello World");
  * sdsrange(s,1,-1); => "ello World"
  */
+/*
+更新sds string的内容为指定范围的内容
+*/
 void sdsrange(sds s, int start, int end) {
     struct sdshdr *sh = (void*) (s-(sizeof(struct sdshdr)));
     size_t newlen, len = sdslen(s);
@@ -683,6 +686,9 @@ void sdsrange(sds s, int start, int end) {
 }
 
 /* Apply tolower() to every character of the sds string 's'. */
+/*
+将所有字符转为小写
+*/
 void sdstolower(sds s) {
     int len = sdslen(s), j;
 
@@ -690,6 +696,9 @@ void sdstolower(sds s) {
 }
 
 /* Apply toupper() to every character of the sds string 's'. */
+/*
+将所有字符转为大写
+*/
 void sdstoupper(sds s) {
     int len = sdslen(s), j;
 
@@ -707,6 +716,9 @@ void sdstoupper(sds s) {
  * If two strings share exactly the same prefix, but one of the two has
  * additional characters, the longer string is considered to be greater than
  * the smaller one. */
+/*
+比较两个字符串，如果有共同前缀，更长的视为比更短的大
+*/
 int sdscmp(const sds s1, const sds s2) {
     size_t l1, l2, minlen;
     int cmp;
